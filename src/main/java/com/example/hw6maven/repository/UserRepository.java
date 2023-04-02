@@ -56,7 +56,7 @@ public class UserRepository {
         return entityManager.find(User.class, id);
     }
 
-    @Transactional
+
     public List<User> getByEmail(String email) {
         Query query = entityManager.createQuery("FROM User WHERE email=:email");
         query.setParameter("email", email);
