@@ -63,6 +63,7 @@ public class UserRepository {
         return query.getResultList();
     }
 
+    @Transactional
     public User updateUserById (Long id, String firstName, String lastName, String email, int age) {
         User user = entityManager.find(User.class, id);
         if(user == null) {
