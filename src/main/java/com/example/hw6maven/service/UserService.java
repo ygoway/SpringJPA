@@ -27,7 +27,7 @@ public class UserService {
         String email;
         do {
             email = scanner.nextLine();
-            if(!email.matches(EMAIL_VALIDATION)) {
+            if (!email.matches(EMAIL_VALIDATION)) {
                 System.out.println("Invalid user email, pls try again");
             }
         } while (!email.matches(EMAIL_VALIDATION));
@@ -35,7 +35,7 @@ public class UserService {
         int age = scanner.nextInt();
 
         List<User> userEmail = userRepository.getByEmail(email);
-        if(!userEmail.isEmpty()){
+        if (!userEmail.isEmpty()) {
             System.out.println("User with email " + email + " already exist!");
         } else {
             User user = userRepository.upsert(new User(fistName, lastName, email, age));
@@ -53,7 +53,7 @@ public class UserService {
         String email;
         do {
             email = scanner.nextLine();
-            if(!email.matches(EMAIL_VALIDATION)) {
+            if (!email.matches(EMAIL_VALIDATION)) {
                 System.out.println("Invalid user email, pls try again");
             }
         } while (!email.matches(EMAIL_VALIDATION));
@@ -67,11 +67,11 @@ public class UserService {
         String stringID;
         do {
             stringID = scanner.nextLine();
-            id = Long.parseLong(stringID);
-            if(!stringID.matches(ONLY_NUMERIC)){
+            if (!stringID.matches(ONLY_NUMERIC)) {
                 System.out.println("Invalid ID format, try again!");
             }
-        }while (!stringID.matches(ONLY_NUMERIC));
+            id = Long.parseLong(stringID);
+        } while (!stringID.matches(ONLY_NUMERIC));
         System.out.println("Change ur name");
         String fistName = scanner.nextLine();
         System.out.println("Change ur lastname");
@@ -80,7 +80,7 @@ public class UserService {
         String email;
         do {
             email = scanner.nextLine();
-            if(!email.matches(EMAIL_VALIDATION)) {
+            if (!email.matches(EMAIL_VALIDATION)) {
                 System.out.println("Invalid user email, pls try again");
             }
         } while (!email.matches(EMAIL_VALIDATION));
@@ -88,11 +88,41 @@ public class UserService {
         int age = scanner.nextInt();
 
         List<User> userEmail = userRepository.getByEmail(email);
-        if(!userEmail.isEmpty()) {
+        if (!userEmail.isEmpty()) {
             System.out.println("User with email " + email + " already exist!");
         } else {
             User user = userRepository.updateUserById(id, fistName, lastName, email, age);
             System.out.println("Successful changes : " + user);
         }
+    }
+
+    public void deleteUserById() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your ID");
+        Long id;
+        String stringID;
+        do {
+            stringID = scanner.nextLine();
+            if (!stringID.matches(ONLY_NUMERIC)) {
+                System.out.println("Invalid ID format, try again!");
+            }
+            id = Long.parseLong(stringID);
+        } while (!stringID.matches(ONLY_NUMERIC));
+        userRepository.removeUserByID(id);
+    }
+
+    public void getUserById() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your ID");
+        Long id;
+        String stringID;
+        do {
+            stringID = scanner.nextLine();
+            if (!stringID.matches(ONLY_NUMERIC)) {
+                System.out.println("Invalid ID format, try again!");
+            }
+            id = Long.parseLong(stringID);
+        } while (!stringID.matches(ONLY_NUMERIC));
+        System.out.println(userRepository.getUserById(id));
     }
 }

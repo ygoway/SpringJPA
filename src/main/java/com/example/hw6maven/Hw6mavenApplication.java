@@ -34,6 +34,8 @@ public class Hw6mavenApplication implements CommandLineRunner {
 			System.out.println("2 To get all users");
 			System.out.println("3 To get user by email");
 			System.out.println("4 To update user by ID");
+			System.out.println("5 To delete user by ID");
+			System.out.println("6 To find user by ID");
 			System.out.println("0 Exit");
 			System.out.println("____________________________________");
 
@@ -48,6 +50,10 @@ public class Hw6mavenApplication implements CommandLineRunner {
 				case 3: userService.getUserByEmail();
 					break;
 				case 4: userService.updateUserById();
+					break;
+				case 5: userService.deleteUserById();
+					break;
+				case 6: userService.getUserById();
 					break;
 				case 0:
 					System.out.println("bye");
